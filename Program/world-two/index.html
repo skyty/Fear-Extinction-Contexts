@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Context 1</title>
+
+    <!-- P5 libraries -->
+    <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+    <script language="javascript" type="text/javascript" src="libraries/p5.dom.js"></script>
+
+    <!-- A-Frame libraries -->
+    <script language="javascript" type="text/javascript" src="libraries/aframe.min.js"></script>
+
+    <!-- AFrameP5 library -->
+    <script language="javascript" type="text/javascript" src="libraries/aframep5.js"></script>
+
+    <!-- P5 Sketch -->
+    <script language="javascript" type="text/javascript" src="sketch.js"></script>
+
+    <!--Scenery js-->
+    <script language="javascript" type="text/javascript" src="rock.js"></script>
+    <script language="javascript" type="text/javascript" src="shock-box.js"></script>
+</head>
+<body>
+
+<a-scene id="context-1">
+    <a-assets id="assets">
+        <img src="img/desert.png" id="sky">
+        <img src="img/sand.jpg" id="sand">
+        <img src="img/cardboard-textures.jpg" id="cardboard">
+
+    </a-assets>
+
+    <a-sky id="blueSky" material="src:#sky"></a-sky>
+
+</a-scene>
+
+
+
+</body>
+</html>

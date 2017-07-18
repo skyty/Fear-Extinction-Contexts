@@ -39,7 +39,7 @@ function setup() {
 function draw() {
 
 
-    if (mouseIsPressed || touchIsDown) {
+    if (mouseIsPressed) {
         world.moveUserForward(1);
     }
 
