@@ -1,10 +1,12 @@
 /**
  * Created by skyzn on 6/16/2017.
  */
+
+
 var world;
 var treeArray = [];
 
-var camera;
+var screenCamera;
 
 var frameTime = 0;
 
@@ -14,10 +16,10 @@ var cuePosition = 0;
 
 function setup() {
     noCanvas();
-
     world = new World('context-1');
     world.setUserPosition(0, 3, 0);
-    camera = document.querySelector('#screenCamera');
+    loadRatingAsset(world);
+    screenCamera = document.querySelector('#screenCamera');
 
     var ground = new Plane({
         x:0, y:0, z:0,
@@ -30,40 +32,40 @@ function setup() {
 
     createTrees(100);
 
+
     shockBox = new ShockBox();
 
     // startTime = millis()/1000;
-
+    rateMe(world, world.getUserPosition());
 }
 
 function draw() {
 
-
-    if (mouseIsPressed) {
-        world.moveUserForward(1);
-    }
+    // if (mouseIsPressed) {
+    //     world.moveUserForward(1);
+    // }
 
     updatePosition();
 
 
-    if (frameCount >= cueTimes[cuePosition]) {
-        if (frameCount === cueTimes[cuePosition]) {
-            frameTime = frameCount;
-        }
-        shockBox.decideShock();
-        if (frameCount - frameTime <= 50) {
-            shockBox.boxDrop();
-        }
-        if (frameCount - frameTime > 60 && frameCount - frameTime <= 120) {
-            shockBox.showCue();
-        }
-        if (frameCount - frameTime > 360 && frameCount - frameTime <= 362) {
-            shockBox.reset();
-            if(cueTimes.length - cuePosition >= 2) {
-                cuePosition += 1;
-            }
-        }
-    }
+    // if (frameCount >= cueTimes[cuePosition]) {
+    //     if (frameCount === cueTimes[cuePosition]) {
+    //         frameTime = frameCount;
+    //     }
+    //     shockBox.decideShock();
+    //     if (frameCount - frameTime <= 50) {
+    //         shockBox.boxDrop();
+    //     }
+    //     if (frameCount - frameTime > 60 && frameCount - frameTime <= 120) {
+    //         shockBox.showCue();
+    //     }
+    //     if (frameCount - frameTime > 360 && frameCount - frameTime <= 362) {
+    //         shockBox.reset();
+    //         if(cueTimes.length - cuePosition >= 2) {
+    //             cuePosition += 1;
+    //         }
+    //     }
+    // }
 }
 
 function createTrees(n) {

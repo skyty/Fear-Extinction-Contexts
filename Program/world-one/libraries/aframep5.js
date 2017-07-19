@@ -792,6 +792,7 @@ function setClickHandler(entity) {
 	if ('clickFunction' in entity.opts) {		
 		entity.clickFunction = entity.opts.clickFunction;
 		entity.tag.eRef = entity;
+		console.log("click added!");
 		entity.tag.addEventListener("click", function() {
 			console.log("clicked");
 			this.eRef.clickFunction(this.eRef);

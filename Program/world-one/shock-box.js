@@ -8,7 +8,7 @@ function ShockBox() {
     this.container = new Container3D({
         y: 3.5
     });
-    this.camera.appendChild(this.container.tag);
+    // this.camera.appendChild(this.container.tag);
 
     this.box = new Box({
         x:0, y:-1, z:-2,
