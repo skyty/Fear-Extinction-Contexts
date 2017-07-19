@@ -66,7 +66,7 @@ function rateMe(world, userPosition){
         this.options.push(box);
         world.scene.appendChild(box);
 
-        document.querySelector('[raycaster]').components.raycaster.refreshObjects();
+        // document.querySelector('[raycaster]').components.raycaster.refreshObjects();
 
         var targetEl = document.querySelector('#box' + i);
         targetEl.addEventListener('click', function() {
