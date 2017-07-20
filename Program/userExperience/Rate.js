@@ -14,13 +14,13 @@
  *  Then, whenever you want to get user rating, just call rateMe() function with the necessary parameters
  */
 function loadRatingAsset(world){
-// <img src="img/sky.jpg" id="sky">
     for (var i = 1; i <= 10; i++){
         var img = document.createElement("img");
         img.setAttribute("src", "./../userExperience/images/" + i + ".png");
         img.setAttribute("id", "rateAsset" + i);
         document.getElementById("assets").appendChild(img);
     }
+
 }
 
 function rateMe(world, userPosition){
@@ -29,51 +29,49 @@ function rateMe(world, userPosition){
     this.userPosition = userPosition;
     this.xBoxPos = this.userPosition.x - 13;
     this.zPos = this.userPosition.z - 10;
-    this.xTextPos = this.userPosition.x - 7.5;
+    this.xTextPos = this.userPosition.x;
     this.yTextPos = this.userPosition.y + 3;
     var that = this;
 
 
     this.text = document.createElement("a-entity");
-    this.text.setAttribute("bmfont-text", "text: Please rate your experience:; color: white");
+    this.text.setAttribute("text", "color: white; value: Please rate your experience; width: 5; lineHeight: 50; letterSpacing: 5; align: center;");
+    // this.text.setAttribute("bmfont-text", "text: Please rate your experience:; color: white");
     this.text.setAttribute("position", "" + this.xTextPos + ", " + this.yTextPos + ", " + this.zPos);
-    // this.text.setAttribute("position", "0, 0, 0");
     this.text.setAttribute("scale", "5, 5, 5");
     world.scene.appendChild(this.text);
+    this.options.push(this.text);
 
     for (var i = 1; i <= 10; i++){
-        this.options.push(new Box({
-            red:255, green:255, blue:255,
-            height:1.5, width:1.5, depth:1.5,
-            x: this.xBoxPos += 2.5,
-            y: this.userPosition.y,
-            z: this.zPos,
-            asset: "rateAsset" + i,
-            // metalness: 0.2,
-            // transparent: true,
-            // roughness: 0.8,
-            clickFunction: function(event){
+        var position = "" + this.xBoxPos + ", " + this.userPosition.y + " " + this.zPos;
+        this.xBoxPos += 2.5;
+        var box = document.createElement("a-box");
+        box.setAttribute("id", "box" + i);
+        box.setAttribute("color", "#FFF");
+        box.setAttribute("height", "1.5");
+        box.setAttribute("width", "1.5");
+        box.setAttribute("depth", "1.5");
+        box.setAttribute("position", position);
+        box.setAttribute("src", "#rateAsset" + i);
 
-                for (var i = 0; i < that.options.length; i++){
-                    world.remove(that.options[i]);
-                }
+        this.options.push(box);
+        world.scene.appendChild(box);
 
-                for (var i = 0; i < world.scene.childNodes.length; i++){
-                    if (world.scene.childNodes[i] === that.text){
-                        world.scene.removeChild(world.scene.childNodes[i]);
+        setTimeout(() => {  document.querySelector('[raycaster]').components.raycaster.refreshObjects(); });
+        var targetEl = document.querySelector('#box' + i);
+        targetEl.addEventListener('click', function(event) {
+            //TODO: what happens on a user click?
+            console.log(event.srcElement.id.substring(3));
+            for (var x = 0; x < that.options.length; x++){
+                for (var y = 0; y  < world.scene.childNodes.length; y++){
+                    if (that.options[x] === world.scene.childNodes[y]){
+                        world.scene.removeChild(world.scene.childNodes[y]);
+                        break;
                     }
                 }
-
-                //TODO: what happens on a user click?
-                console.log(event.asset.substring(9) + " clicked");
             }
-        }));
-        console.log(this.xBoxPos, this.userPosition.y, this.userPosition.z);
-        world.add(this.options[i-1]);
+        });
+
     }
-
-
-
-
 }
 
