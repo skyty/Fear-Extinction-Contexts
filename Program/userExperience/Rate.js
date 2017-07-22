@@ -53,6 +53,16 @@ function rateMe(world, userPosition){
         box.setAttribute("depth", "1.5");
         box.setAttribute("position", position);
         box.setAttribute("src", "#rateAsset" + i);
+        // box.setAttribute("cursor", "fuse: true; fuseTimeout: 500");
+
+        var animation = document.createElement("a-animation");
+        animation.setAttribute("begin", "cursor-hovered");
+        animation.setAttribute("easing", "linear");
+        animation.setAttribute("attribute", "rotation");
+        animation.setAttribute("fill", "forwards");
+        animation.setAttribute("to", "0 360 0");
+        animation.setAttribute("repeat", "indefinite");
+        box.appendChild(animation);
 
         this.options.push(box);
         world.scene.appendChild(box);
