@@ -146,9 +146,12 @@ function RateMe(world){
             }
         }
 
+        var answer = this.selectedNumber;
+        this.selectedNumber = 1;
+        this.shown = false;
         //return the number
-        console.log(this.selectedNumber);
-        return this.selectedNumber;
+        console.log(answer);
+        return answer;
     };
 }
 
